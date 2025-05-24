@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IP Quality Checker</title>
+  <style>
+    body { font-family: Arial; padding: 2rem; }
+    .risk { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <% if (data) { %>
+    <h2>Your IP Details</h2>
+    <p><strong>IP Address:</strong> <%= data.ip_address %></p>
+    <p><strong>ISP:</strong> <%= data.ISP %></p>
+    <p><strong>Country:</strong> <%= data.country_code %> (<%= data.country_name %>)</p>
+    <p><strong>City:</strong> <%= data.city %></p>
+    <p><strong>VPN Detected:</strong> <%= data.vpn %></p>
+    <p><strong>Proxy Detected:</strong> <%= data.proxy %></p>
+    <p><strong>Tor Detected:</strong> <%= data.tor %></p>
+    <p><strong>Risk Score:</strong> <%= data.fraud_score %> / 100</p>
+    <% if (data.fraud_score > 85) { %>
+      <p class="risk">⚠️ Warning: Suspicious Activity Detected!</p>
+    <% } %>
+  <% } else { %>
+    <p>Could not retrieve IP information. Please try again later.</p>
+  <% } %>
+</body>
+</html>
